@@ -1,13 +1,17 @@
 /* Test interaction with twilio co-pilot configuration */
 
 var express = require('express'),
-  twilio = require('twilio');
+  twilio = require('twilio'),
+  bodyParser = require('body-parser')
+
 
 var twilio_account_sid = process.env.TWILIO_SID;
 var twilio_auth_token = process.env.TWILIO_AUTH_TOKEN;
 var twilio_msg_sid = process.env.TWILIO_MSG_SID;
 
 var app = express()
+app.use(bodyParser.json());
+
 var client = new twilio.RestClient(twilio_account_sid, twilio_auth_token);
 
 app.get('/', function (req, res) {
@@ -18,8 +22,8 @@ app.get('/healthy', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.get('/status', function (req, res) {
-  console.log("Status", JSON.stringify(req.body));
+app.post('/status', function (req, res) {
+  console.log("Status", req.body);
   res.send('ok');
 })
 
