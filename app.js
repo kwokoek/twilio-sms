@@ -23,8 +23,13 @@ app.get('/healthy', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.post('/status', function (req, res) {
-  console.log("\nPost Status body", req.body);
+app.post('/statuscallback', function (req, res) {
+  console.log("\nStatus Callback msg", req.body);
+  res.send('ok');
+})
+
+app.post('/inbound', function (req, res) {
+  console.log("\nInbound request msg", req.body);
   res.send('ok');
 })
 
