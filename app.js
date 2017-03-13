@@ -10,6 +10,7 @@ var twilio_auth_token = process.env.TWILIO_AUTH_TOKEN;
 var twilio_msg_sid = process.env.TWILIO_MSG_SID;
 
 var app = express()
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 var client = new twilio.RestClient(twilio_account_sid, twilio_auth_token);
@@ -23,7 +24,7 @@ app.get('/healthy', (req, res) => {
 });
 
 app.post('/status', function (req, res) {
-  console.log("Status", req.body);
+  console.log("\nPost Status body", req.body);
   res.send('ok');
 })
 
