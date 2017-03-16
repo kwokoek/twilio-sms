@@ -33,6 +33,11 @@ app.post('/inbound', function (req, res) {
   res.send('ok');
 })
 
+app.get('/echo', function (req, res) {
+  console.log("\nTest request msg", req.url);
+  res.send('ok');
+})
+
 app.get('/send', function (req, res) {
   var to = req.query.to;
   //console.log(req);
